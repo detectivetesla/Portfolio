@@ -31,19 +31,19 @@ const testimonials = [
     text: "Caleb's academic performance and technical skills are outstanding. He's a top-tier student in our Computer Science program.",
     author: "GCTU ACADEMICS",
     role: "Dean's Office",
-    avatar: "https://i.pravatar.cc/150?u=gctu"
+    avatar: "assets/gctu_logo.png"
   },
   {
     text: "A reliable and creative partner for our e-learning platforms. Caleb's designs are intuitive and world-class.",
     author: "COURSECITY TEAM",
     role: "Management",
-    avatar: "https://i.pravatar.cc/150?u=coursecity"
+    avatar: "assets/coursecity_logo.png"
   },
   {
     text: "Pixel-perfect implementation and robust backend solutions. Working with Caleb on our digital projects was a game-changer.",
     author: "BYTEBEACON TECH",
     role: "Engineering Lead",
-    avatar: "https://i.pravatar.cc/150?u=bytebeacon"
+    avatar: "assets/bytebeacon_logo.png"
   }
 ]
 
