@@ -188,10 +188,17 @@ document.addEventListener('DOMContentLoaded', () => {
 function initForm() {
   const form = document.getElementById('contact-form')
   if (!form) return
+  const statusEle = document.getElementById('form-status')
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
     const formData = new FormData(form)
+
+    // Disable button during submission
+    const submitBtn = form.querySelector('.btn-submit-contact')
+    const originalBtnText = submitBtn.textContent
+    submitBtn.textContent = 'SENDING...'
+    submitBtn.disabled = true
 
     try {
       await fetch("/", {
@@ -199,11 +206,22 @@ function initForm() {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString(),
       })
-      alert("Thanks for your message, Caleb will get back to you soon!")
+
+      statusEle.textContent = "Thanks for your message, Caleb will get back to you soon!"
+      statusEle.className = "form-status success"
       form.reset()
+
+      // Clear status after 5 seconds
+      setTimeout(() => {
+        statusEle.style.display = 'none'
+      }, 5000)
+
     } catch (error) {
-      alert("Oops! There was an error sending your message. Please try again.")
+      statusEle.textContent = "Oops! There was an error sending your message. Please try again."
+      statusEle.className = "form-status error"
+    } finally {
+      submitBtn.textContent = originalBtnText
+      submitBtn.disabled = false
     }
   })
 }
-
