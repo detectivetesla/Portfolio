@@ -30,7 +30,7 @@ const works = [
     description: 'Enhanced Learning Management System for GCTU with focus on usability.',
     image: 'assets/images/GCTU-LMS.png',
     tags: ['LMS', 'UI/UX Design'],
-    href: 'https://hci-gctu-lms-group-alpha.netlify.app'
+    href: 'https://gctu-lms-evaluated.netlify.app'
   }
 ]
 
