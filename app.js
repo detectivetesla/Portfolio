@@ -77,9 +77,26 @@ function createCard(w) {
 
 function renderWorks() {
   const grid = document.getElementById('works')
+  const dotsContainer = document.querySelector('.carousel-dots')
   if (!grid) return
   grid.innerHTML = ''
   works.forEach(w => grid.appendChild(createCard(w)))
+
+  // Create dots based on project count
+  if (dotsContainer) {
+    dotsContainer.innerHTML = works.map((_, i) => `<span class="dot ${i === 0 ? 'active' : ''}"></span>`).join('')
+
+    const dots = dotsContainer.querySelectorAll('.dot')
+    grid.addEventListener('scroll', () => {
+      const scrollPos = grid.scrollLeft
+      const cardWidth = grid.querySelector('.card').offsetWidth + 30
+      const activeIdx = Math.round(scrollPos / cardWidth)
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeIdx)
+      })
+    })
+  }
 }
 
 // Theme Toggle Logic

@@ -752,23 +752,32 @@ main::before {
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  overflow-x: auto;
   gap: 30px;
+  padding: 20px 0 40px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.projects-grid::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
 }
 
 .card {
+  flex: 0 0 calc(33.333% - 20px);
+  min-width: 320px;
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 20px;
   overflow: hidden;
   transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent-color);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  scroll-snap-align: center;
 }
 
 .card-media {
