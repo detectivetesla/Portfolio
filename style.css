@@ -143,6 +143,7 @@ body.theme-purple .app-root {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -157,6 +158,11 @@ body {
     background 0.8s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 h1,
@@ -429,6 +435,7 @@ main::before {
   display: flex;
   align-items: center;
   gap: 32px;
+  flex-wrap: wrap;
 }
 
 .social-links {
