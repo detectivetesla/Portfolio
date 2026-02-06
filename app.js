@@ -26,6 +26,27 @@ const works = [
   }
 ]
 
+const testimonials = [
+  {
+    text: "Caleb's academic performance and technical skills are outstanding. He's a top-tier student in our Computer Science program.",
+    author: "GCTU ACADEMICS",
+    role: "Dean's Office",
+    avatar: "https://i.pravatar.cc/150?u=gctu"
+  },
+  {
+    text: "A reliable and creative partner for our e-learning platforms. Caleb's designs are intuitive and world-class.",
+    author: "COURSECITY TEAM",
+    role: "Management",
+    avatar: "https://i.pravatar.cc/150?u=coursecity"
+  },
+  {
+    text: "Pixel-perfect implementation and robust backend solutions. Working with Caleb on our digital projects was a game-changer.",
+    author: "BYTEBEACON TECH",
+    role: "Engineering Lead",
+    avatar: "https://i.pravatar.cc/150?u=bytebeacon"
+  }
+]
+
 function createCard(w) {
   const article = document.createElement('article')
   article.className = 'card'
@@ -182,7 +203,44 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy()
   initReveal()
   initForm()
+  initTestimonials()
 })
+
+function initTestimonials() {
+  const avatar = document.getElementById('test-avatar')
+  const text = document.getElementById('test-text')
+  const author = document.getElementById('test-author')
+  const role = document.getElementById('test-role')
+  const container = document.getElementById('test-container')
+  const dots = document.querySelectorAll('.test-dot')
+
+  if (!container) return
+
+  let idx = 0
+
+  const update = () => {
+    container.style.opacity = '0'
+    container.style.transform = 'translateY(10px)'
+
+    setTimeout(() => {
+      const t = testimonials[idx]
+      if (avatar) avatar.src = t.avatar
+      if (text) text.textContent = `"${t.text}"`
+      if (author) author.textContent = t.author
+      if (role) role.textContent = t.role
+
+      dots.forEach((dot, dIdx) => {
+        dot.style.background = dIdx === idx ? 'var(--accent-color)' : 'var(--card-border)'
+      })
+
+      container.style.opacity = '1'
+      container.style.transform = 'translateY(0)'
+      idx = (idx + 1) % testimonials.length
+    }, 500)
+  }
+
+  setInterval(update, 5000)
+}
 
 // Netlify Form Handling
 function initForm() {
