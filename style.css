@@ -1001,6 +1001,11 @@ main::before {
   color: #8b5cf6;
 }
 
+.service-icon.pink {
+  background: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+}
+
 /* Experience Section */
 .experience-list {
   display: flex;
