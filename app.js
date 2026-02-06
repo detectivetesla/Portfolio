@@ -30,7 +30,7 @@ const works = [
     description: 'Enhanced Learning Management System for GCTU with focus on usability.',
     image: 'assets/images/GCTU-LMS.png',
     tags: ['LMS', 'UI/UX Design'],
-    href: 'https://gctu-lms-evaluated.netlify.app'
+    href: 'https://gctu-lms-evaluated.netlify.app/'
   }
 ]
 
@@ -78,6 +78,9 @@ function createCard(w) {
 function renderWorks() {
   const grid = document.getElementById('works')
   const dotsContainer = document.querySelector('.carousel-dots')
+  const prevBtn = document.getElementById('projects-prev')
+  const nextBtn = document.getElementById('projects-next')
+
   if (!grid) return
   grid.innerHTML = ''
   works.forEach(w => grid.appendChild(createCard(w)))
@@ -87,7 +90,7 @@ function renderWorks() {
     dotsContainer.innerHTML = works.map((_, i) => `<span class="dot ${i === 0 ? 'active' : ''}"></span>`).join('')
 
     const dots = dotsContainer.querySelectorAll('.dot')
-    grid.addEventListener('scroll', () => {
+    const updateUI = () => {
       const scrollPos = grid.scrollLeft
       const cardWidth = grid.querySelector('.card').offsetWidth + 30
       const activeIdx = Math.round(scrollPos / cardWidth)
@@ -95,7 +98,35 @@ function renderWorks() {
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === activeIdx)
       })
-    })
+
+      // Arrow Visibility (HCI: Feedback & Visibility)
+      if (prevBtn) prevBtn.classList.toggle('hidden', scrollPos <= 10)
+      if (nextBtn) {
+        const isAtEnd = scrollPos + grid.offsetWidth >= grid.scrollWidth - 10
+        nextBtn.classList.toggle('hidden', isAtEnd)
+      }
+    }
+
+    grid.addEventListener('scroll', updateUI)
+    window.addEventListener('resize', updateUI)
+
+    // Initial UI state
+    setTimeout(updateUI, 100)
+
+    // Navigation Logic
+    const scrollAmount = () => grid.querySelector('.card').offsetWidth + 30
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        grid.scrollBy({ left: -scrollAmount(), behavior: 'smooth' })
+      })
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        grid.scrollBy({ left: scrollAmount(), behavior: 'smooth' })
+      })
+    }
   }
 }
 
