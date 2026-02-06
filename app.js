@@ -2,27 +2,35 @@
 const works = [
   {
     id: '1',
-    title: 'Modern Dashboard UI',
-    description: 'A responsive dashboard built with a focus on data viz and UX.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Web Design', 'App Design'],
+    title: 'Data-Selling Admin Dashboard',
+    description: 'Comprehensive administrative interface for managing data bundle sales and transactions.',
+    image: 'assets/images/Data-Selling Admin Dashboard.png',
+    tags: ['Dashboard', 'Admin UI'],
     href: '#'
   },
   {
     id: '2',
-    title: 'E‑commerce Landing',
-    description: 'A fast landing experience optimized for conversions and accessibility.',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Web Design', 'Marketing'],
+    title: 'CourseCity Webapp',
+    description: 'Dynamic e-learning platform for course management and student interaction.',
+    image: 'assets/images/CourseCity Webapp.png',
+    tags: ['Web Application', 'E-learning'],
     href: '#'
   },
   {
     id: '3',
-    title: 'Mobile App Prototype',
-    description: 'Prototype for a mobile-first experience with animation and accessibility in mind.',
-    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop',
-    tags: ['App Design', 'Figma'],
+    title: 'School Managemet System UI',
+    description: 'Clean interface for educational institutions to manage records and schedules.',
+    image: 'assets/images/School Managemet System UI.png',
+    tags: ['School System', 'Management'],
     href: '#'
+  },
+  {
+    id: '4',
+    title: 'GCTU-LMS (Redesigned & Evaluated)',
+    description: 'Enhanced Learning Management System for GCTU with focus on usability.',
+    image: 'assets/images/GCTU-LMS.png',
+    tags: ['LMS', 'UI/UX Design'],
+    href: 'https://hci-gctu-lms-group-alpha.netlify.app'
   }
 ]
 
@@ -52,9 +60,10 @@ function createCard(w) {
   article.className = 'card'
 
   article.innerHTML = `
-    <div class="card-media" style="background-image: url('${w.image}')"></div>
+    <div class="card-media" style="background-image: url('${encodeURI(w.image)}')"></div>
     <div class="card-body">
       <h3 class="card-title">${w.title}</h3>
+      <p class="card-description">${w.description}</p>
       <div class="card-tags">${w.tags.join(', ')}</div>
       <div class="card-actions">
         <a href="${w.href}" class="btn-arrow" target="_blank" rel="noreferrer" title="View Project">
