@@ -201,10 +201,13 @@ function initForm() {
     submitBtn.disabled = true
 
     try {
-      await fetch("/", {
+      await fetch("https://formsubmit.co/ajax/adzokatsekaleb@gmail.com", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(Object.fromEntries(formData)),
       })
 
       statusEle.textContent = "Thanks for your message, Caleb will get back to you soon!"
