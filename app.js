@@ -181,5 +181,29 @@ document.addEventListener('DOMContentLoaded', () => {
   initTyping()
   initScrollSpy()
   initReveal()
+  initForm()
 })
+
+// Netlify Form Handling
+function initForm() {
+  const form = document.getElementById('contact-form')
+  if (!form) return
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const formData = new FormData(form)
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      })
+      alert("Thanks for your message, Caleb will get back to you soon!")
+      form.reset()
+    } catch (error) {
+      alert("Oops! There was an error sending your message. Please try again.")
+    }
+  })
+}
 
